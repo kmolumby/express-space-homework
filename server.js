@@ -1,22 +1,25 @@
 // DEPENDENCIES
 const express = require('express');
 const app = express();
-const MarsMissions = require('./models/marsMissions')
+const Missions = require('./models/marsMissions')
+
+
+app.get('/missions', (req,res) => {
+  res.render('index.ejs', {
+    mission: Missions
+  })
+
+})
 
 app.get('/missions/:index', (req,res) => {
   console.log(req.params)
-  res.render('show.ejs'), {
-    mission: MarsMissions[req.params.index]
-  }
+  res.render('show.ejs', {
+    mission: Missions[req.params.index]
+  })
 
 })
 
-app.get('/missions', (req,res) => {
-  res.render('index.ejs'), {
-    mission: MarsMissions[req.params.index]
-  }
 
-})
 // * Your mission is to complete the app
 // * The app will need routes for index and show
 // * The app will need views for index and show
